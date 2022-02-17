@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>homepage</title>
+    <style>
+a:link, a:visited {
+  background-color: #1C658C;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: #139487;
+}
+</style>
+</head>
+<body>
+{% if user.is_authenticated %}
+<h1>WELCOME {{user.username}}</h1>
+{% else %}
+<h1>WELCOME PROGRAMMER</h1>
+{% endif %}
+{% if user.is_authenticated %}
+{% for datas in data %}
+{% if datas.username == user.username %}
+{{datas.profile_photo}}
+<p> first name:{{datas.first_name}} </p>
+<p> last name:{{datas.last_name}} </p>
+<p> DOB:{{datas.date_of_birth}} </p>
+<p> username :{{datas.username}} </p>
+<p> address :{{datas.address}} </p>
+<p> phone :{{datas.phone}} </p>
+
+
+
+{% endif %}
+{% endfor %}
+<a href="logout"  target="_blank">Logout</a>
+{% else %}
+<a href="login"  target="_blank">Login</a>
+<a href="signup" target="_blank">Signup</a>
+{% endif %}
+
+</body>
+</html>
